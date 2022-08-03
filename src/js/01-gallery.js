@@ -1,4 +1,4 @@
-import SimpleLightbox from "simplelightbox";
+import SimpleLightbox from 'simplelightbox';
 // Додатковий імпорт стилів
 import "simplelightbox/dist/simple-lightbox.min.css";
 
@@ -27,27 +27,33 @@ const galleryCards = createGalleryCardsMarkup(galleryItems)
 
 gallery.insertAdjacentHTML('beforeend', galleryCards);
 
-
-gallery.addEventListener('click', clickHandler);
-
-function clickHandler(event) {
-    event.preventDefault();
-    const targetValue = event.target.dataset.source;
-    if (!targetValue) {
-        return;
-    }
-    const instance = basicLightbox.create(`<img src="${targetValue}" width="800" height="600">`,
-        {
-            onShow: () => window.addEventListener('keydown', clickEscape),
-            onClose: () => window.removeEventListener('keydown', clickEscape),
-        })
-    instance.show();
+const imageBox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  animationSpeed: 250,
+});
 
 
+// gallery.addEventListener('click', clickHandler);
 
-    function clickEscape(event) {
-        if (event.code === "Escape") {
-            instance.close();
-        }
-    }
-}
+// function clickHandler(event) {
+//     event.preventDefault();
+//     const targetValue = event.target.dataset.source;
+//     if (!targetValue) {
+//         return;
+//     }
+//     const instance = basicLightbox.create(`<img src="${targetValue}" width="800" height="600">`,
+//         {
+//             onShow: () => window.addEventListener('keydown', clickEscape),
+//             onClose: () => window.removeEventListener('keydown', clickEscape),
+//         })
+//     instance.show();
+
+
+
+//     function clickEscape(event) {
+//         if (event.code === "Escape") {
+//             instance.close();
+//         }
+//     }
+// }
