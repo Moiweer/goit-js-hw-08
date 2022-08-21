@@ -79,6 +79,15 @@ function onTextareaInput(evt) {
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
+function populateTextarea() {
+    let formData = localStorage.getItem(STORAGE_KEY);
+    if (formData) {
+        formData = JSON.parse(formData);
+        Object.entries(formData).forEach(([name, value]) => {
+            refs.form.elements[name].value = value;
+        })
+      
+    }
 function onFormSubmit(evt) {
     evt.preventDefault();
     const email = evt.target.elements.email.value;
@@ -94,13 +103,7 @@ function onFormSubmit(evt) {
 }
 
 
-function populateTextarea() {
-    let formData = localStorage.getItem(STORAGE_KEY);
-    if (formData) {
-        formData = JSON.parse(formData);
-        Object.entries(formData).forEach(([name, value]) => {
-            refs.form.elements[name].value = value;
-        })
+
       
-    }
+    
 }
