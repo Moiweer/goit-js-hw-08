@@ -42,6 +42,7 @@ function populateTextarea() {
     if (formData) {
         formData = JSON.parse(formData);
         Object.entries(formData).forEach(([name, value]) => {
+            formObject[name]=value
             form.elements[name].value = value;
             localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
         })
